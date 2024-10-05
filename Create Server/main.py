@@ -1,9 +1,14 @@
 from fastapi import FastAPI,Request
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from config import database  # Import from config folder
+from model import models     # Import models from model folder
 
 #create an instance of FastAPI, server also start this code
 app = FastAPI()
+
+# Create the database tables if they don't exist
+models.Base.metadata.create_all(bind=database.engine)
 
 print("hi")
 
