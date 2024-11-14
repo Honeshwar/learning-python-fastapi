@@ -8,7 +8,7 @@ from database import engine, LocalSession
 from starlette import status
 
 from pydantic import BaseModel, Field
-from routers import auth, todos
+from routers import auth, todos,admin,user
 
 # create an instance of fastapi application
 app = FastAPI()
@@ -17,7 +17,8 @@ app = FastAPI()
 # it not call on restart server if todos.db file exist in current directory
 models.Base.metadata.create_all(bind=engine)#not establish connection with database , o establish a database connection, you need to use the engine object to connect to the database. You can do this by calling the connect() method on the engine object, like this:engine.connect()
 
-
+app.include_router(user.router)
+app.include_router(admin.router)
 app.include_router(auth.router)
 app.include_router(todos.router)
 

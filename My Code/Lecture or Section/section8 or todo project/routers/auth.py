@@ -100,12 +100,13 @@ async def get_current_user(token: Annotated[str, Depends(oAuth_bearer)]):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         user_id: int = payload.get("user_id")
+        role: str = payload.get("role")
 
         #validation check
         if username is None or user_id is None:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='could not validate credentials')
 
-        return {"username": username, "user_id": user_id}
+        return {"username": username, "user_id": user_id, "role": role}
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='could not validate credentials')
 
@@ -122,7 +123,7 @@ async def signIn(form_data:Annotated[OAuth2PasswordRequestForm,Depends()], db:db
     if not is_user:
         raise HTTPException(status_code=404,detail="Incorrect username or password")
     
-    token=generate_token(is_user.email, is_user.id,15)
+    token=generate_token(is_user.email, is_user.id,is_user.role,15)
     
     return {"access_token": token, "token_type": "bearer"}
 
@@ -138,7 +139,7 @@ def validate_user_signin_details(email: str, password: str, db: Session):
 
     return user
 
-def generate_token(username:str, user_id:int, expires_delta: int):
+def generate_token(username:str, user_id:int,role:str, expires_delta: int):
 
     payload = {
         "sub":username,
