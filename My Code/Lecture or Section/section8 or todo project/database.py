@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 # database url where we want to store data, location of that store
-SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./todosapp.db"
 
 # create instance of database engine
 # create_engine() is used to create a database engine in SQLAlchemy.
