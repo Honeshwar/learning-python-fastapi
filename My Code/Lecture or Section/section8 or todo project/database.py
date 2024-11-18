@@ -6,13 +6,18 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 # database url where we want to store data, location of that store
-SQLALCHEMY_DATABASE_URL = "sqlite:///./todosapp.db"
-
+# SQLALCHEMY_DATABASE_URL = "sqlite:///./todosapp.db"
+# SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:h.t%40t566654@localhost:5432/TodoDB'
+SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:h.t%40t566654@localhost:3306/TodoDB'
+#  / = %2F and @=  %40
 # create instance of database engine
 # create_engine() is used to create a database engine in SQLAlchemy.
 # When "check_same_thread": False is passed to the create_engine() function, SQLAlchemy will allow the connection to be shared across multiple threads. This can improve performance in multi-threaded applications, but it also means that the application must take care to avoid concurrent access to the database.
-engine = create_engine(SQLALCHEMY_DATABASE_URL,connect_args={"check_same_thread":False})
 
+#for sqlite DB
+# engine = create_engine(SQLALCHEMY_DATABASE_URL,connect_args={"check_same_thread":False})
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 # create an active database session in our local machine
 # it will help us to store data in database 
 
