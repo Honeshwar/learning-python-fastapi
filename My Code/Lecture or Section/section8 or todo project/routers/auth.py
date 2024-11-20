@@ -47,6 +47,7 @@ class AuthRequest(BaseModel):
     email: str=Field(min_length=3)
     password: str=Field(min_length=3)
     role: str=Field(min_length=3)
+    mobile: str
 
 
 @router.post("/authorize",status_code=status.HTTP_201_CREATED)
