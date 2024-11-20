@@ -80,3 +80,24 @@ def change_password(user:user_dependency,db:db_dependency,change_password_req:Ch
     print(user)
 
     return user
+
+
+@router.patch('/update-mobile',status_code=status.HTTP_204_NO_CONTENT)
+async def update_mobile(user:user_dependency,db:db_dependency,mobile_no:int=Query(gt=0)):
+     
+    if user is None:
+          raise HTTPException(status_code=404,detail="user not Authenticated")
+     
+    if not mobile_no.regex("^[6-9][0-9]{9}$"):
+          raise HTTPException(status_code=404,detail="mobile number not valid")
+    
+    
+    user = db.query(User).filter(User.id == user['user_id']).first()
+    
+     
+    user.mobile = mobile_no
+    db.commit()
+
+    print(user)
+
+    return user

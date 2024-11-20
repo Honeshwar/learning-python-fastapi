@@ -57,6 +57,7 @@ async def sign_un(db:db_dependency,user_req:AuthRequest):
         name=user_req.name,
          hash_password=bycrpt_context.hash(user_req.password),
         role=user_req.role,
+        mobile=user_req.mobile,
         is_active=True
       )
     print(new_user)
@@ -101,6 +102,7 @@ async def get_current_user(token: Annotated[str, Depends(oAuth_bearer)]):
         username: str = payload.get("sub")
         user_id: int = payload.get("user_id")
         role: str = payload.get("role")
+        mobile: str = payload.get("mobile")
 
         #validation check
         if username is None or user_id is None:
@@ -152,3 +154,6 @@ def generate_token(username:str, user_id:int,role:str, expires_delta: int):
     payload.update({"exp":expire})
 
     return jwt.encode(payload,SECRET_KEY,algorithm=ALGORITHM)
+
+
+

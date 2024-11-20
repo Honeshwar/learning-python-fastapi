@@ -6,9 +6,9 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 # database url where we want to store data, location of that store
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./todosapp.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./todosapp.db"
 # SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:h.t%40t566654@localhost:5432/TodoDB'
-SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:h.t%40t566654@localhost:3306/TodoDB'
+# SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:h.t%40t566654@localhost:3306/TodoDB'
 #  / = %2F and @=  %40
 # create instance of database engine
 # create_engine() is used to create a database engine in SQLAlchemy.
