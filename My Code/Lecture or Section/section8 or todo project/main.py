@@ -17,6 +17,13 @@ app = FastAPI()
 # it not call on restart server if todos.db file exist in current directory
 models.Base.metadata.create_all(bind=engine)#not establish connection with database , o establish a database connection, you need to use the engine object to connect to the database. You can do this by calling the connect() method on the engine object, like this:engine.connect()
 
+
+@app.get('/healthy')
+def is_healthy():
+    return {
+        "status":"healthy"
+    }
+
 app.include_router(user.router)
 app.include_router(admin.router)
 app.include_router(auth.router)

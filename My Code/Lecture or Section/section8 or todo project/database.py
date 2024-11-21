@@ -16,7 +16,7 @@ SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:h.t%40t566654@localhost:3306/Tod
 
 #for sqlite DB
 # engine = create_engine(SQLALCHEMY_DATABASE_URL,connect_args={"check_same_thread":False})
-
+# making connection to db
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 # create an active database session in our local machine
 # it will help us to store data in database 
