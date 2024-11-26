@@ -1,5 +1,5 @@
 #  basic fastapi application
-from fastapi import FastAPI,Depends,Path,Query,HTTPException,Body
+from fastapi import FastAPI,Depends,Path,Query,HTTPException,Body,Request
 import models
 from models import Todos
 from typing import Annotated
@@ -10,6 +10,10 @@ from starlette import status
 from pydantic import BaseModel, Field
 from routers import auth, todos,admin,user
 
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
+
 # create an instance of fastapi application
 app = FastAPI()
 
@@ -17,6 +21,15 @@ app = FastAPI()
 # it not call on restart server if todos.db file exist in current directory
 models.Base.metadata.create_all(bind=engine)#not establish connection with database , o establish a database connection, you need to use the engine object to connect to the database. You can do this by calling the connect() method on the engine object, like this:engine.connect()
 
+
+
+templates = Jinja2Templates(directory="templates")
+app.mount("/static",StaticFiles(directory="static"),name="assets")#mounted create an route for static files so we can access in html file
+# path, folder at app, name to this route so we can access it programatically without /static in url_for or url_path_for method ma use kar sake
+
+@app.get('/')
+def root(request:Request):
+    return templates.TemplateResponse("home.html",{"request":request})
 
 @app.get('/healthy')
 def is_healthy():
