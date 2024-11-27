@@ -94,3 +94,11 @@ class Users(Base):
 create v1 folder and inside it index.py and user.py
 - define prefix in file to set which file belong to which endpoint and also use app.include_router() method to go from one end point to another
 ```
+
+## Step 5 create routes 
+
+## Step 6 Deployment
+```
+pip freeze > requirements.txt
+
+```
