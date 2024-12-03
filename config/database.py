@@ -53,3 +53,18 @@ This ensures that get_db only creates sessions that reuse existing connections e
 # return an object that having capability to crate session with db
 CreateLocalSessionInstance = sessionmaker(autocommit= False,autoflush=False,bind=engine)
 
+
+
+
+
+from typing import Annotated
+from fastapi import Depends
+# common
+def get_db():
+   db = CreateLocalSessionInstance()
+   try:
+       yield db
+   finally:
+       db.close()
+#    injection create
+db_dependency = Annotated[CreateLocalSessionInstance, Depends(get_db)]

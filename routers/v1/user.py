@@ -3,7 +3,7 @@ from pydantics.user import CreateUserRequest
 from config.database import CreateLocalSessionInstance
 from typing import Annotated
 from models.users import User
-
+from config.database import db_dependency
 
 router = APIRouter(prefix="/user",tags=['user'])
 
@@ -14,14 +14,7 @@ The yield keyword transforms the get_db function into a generator function. Inst
 Pauses execution:
 When the yield statement is reached, the function's execution is paused, and the yielded value is returned. The function's state is preserved, allowing it to resume from where it left off the next time it's called.
 '''
-def get_db():
-   db = CreateLocalSessionInstance()
-   try:
-       yield db
-   finally:
-       db.close()
-#    injection create
-db_dependency = Annotated[CreateLocalSessionInstance, Depends(get_db)]
+
 
 # using that instance create routes and defines its actions
 @router.get('/root')
