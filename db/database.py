@@ -1,12 +1,19 @@
+from typing import Generator
+import os
+from core.config import base_settings 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from dotenv import load_dotenv
-import os
+ 
+# import env obj on basic of dev and prod server
+if base_settings.ENV == "test":
+    from core.config import test_settings as settings
+else:
+    from core.config import settings
 
-load_dotenv()
+ 
 
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+SQLALCHEMY_DATABASE_URL = settings.MYSQL_URL
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
@@ -17,9 +24,9 @@ Base = declarative_base()
 
 
 # create a function to create session
-def get_db():
-    db = createSessionInstance()
+def get_db() -> Generator:
     try:
+        db = createSessionInstance()
         yield db
     finally:
         db.close()
