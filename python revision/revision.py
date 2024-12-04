@@ -51,8 +51,8 @@
 
 
 # boolean and operators
-isTrue = True
-isFalse = False
+# isTrue = True
+# isFalse = False
 
 # print(isTrue and isFalse)
 # print(isTrue or isFalse)
@@ -64,20 +64,20 @@ isFalse = False
 # print(isTrue is isTrue)
 
 # is keyword is use for equality, is --> == or is not --> (!=)
-print(isTrue is isFalse)
+# print(isTrue is isFalse)
 
 
 # if else and elif
 
-if isTrue is not isFalse:
-    a = 1
-    print("true:)")
-elif isTrue is isFalse:
-    a = 2
-else:
-    print("false:(")
+# if isTrue is not isFalse:
+#     a = 1
+#     print("true:)")
+# elif isTrue is isFalse:
+#     a = 2
+# else:
+#     print("false:(")
 
-print(a)
+# print(a)
 
 
 # def abc():
@@ -92,3 +92,58 @@ print(a)
 # global scope is outside the function
 # local scope is inside the function
 # can use global keyword to access local variable at global scope
+
+# loops !!!!!!!!!!!!!
+
+# list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# for i in list:
+#     print(i)
+#     for j in range(2,10,2):
+#         print(f"j is {j}")
+
+# two way to iterate list and tuple
+# using in list and using range to define specific increments or step size
+
+
+# a=0
+# while a<10:
+#     print(a)
+#     a+=1
+
+
+
+# dictionary
+
+# dict = {1:"one",2:"two",3:"three"}
+
+# iterate over dictionary
+# for key in dict:
+#     print(key, dict[key])
+
+# for key,value in dict.items():
+#     print(key,value)
+
+# methods dict.keys(), dict.values(), dict.items
+
+# print(dict.keys())
+# print(dict.values())
+# print(dict.items())#set returns inside tuple
+
+# crud operations on dictionary
+dict1 = {1:"one",2:"two",3:"three"}
+
+# dict1[1] = "one one"
+# dict1.update({4:"four"})
+# print(dict1.get(2))
+# del dict1[2]
+# del dict1
+# print(dict1) do empty dictionary
+
+# print(dict1)
+
+dict2 = dict1 # pass by reference(of the memory) of dict1 to dict2
+# for hard copy use copy module
+dict2 = dict1.copy()
+del dict2[2]
+print(dict1,dict2)
