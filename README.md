@@ -33,3 +33,9 @@ core - basic setup like dotenv, error handling classes custom, that we want to r
 
 
 ```
+
+## DB setup and Basic fastapi code
+
+## models and routers creates
+
+## repeat above steps
