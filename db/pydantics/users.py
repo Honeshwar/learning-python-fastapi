@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field,  field_validator
 from typing import Literal,Optional
 
-class AddTeamLeader(BaseModel):
+class AddTeamLeaderModel(BaseModel):
     # String fields with minimum and maximum length validations
     first_name: str = Field(..., min_length=3, max_length=200, description="First name must be between 3 and 200 characters.")
     last_name: str = Field(..., min_length=3, max_length=200, description="Last name must be between 3 and 200 characters.")

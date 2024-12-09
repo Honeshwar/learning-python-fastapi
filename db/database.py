@@ -14,7 +14,7 @@ else:
  
 
 SQLALCHEMY_DATABASE_URL = settings.MYSQL_URL
-
+print(SQLALCHEMY_DATABASE_URL)
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )
@@ -24,9 +24,11 @@ Base = declarative_base()
 
 
 # create a function to create session
-def get_db() -> Generator:
+def get_sql_db() -> Generator:
     try:
         db = createSessionInstance()
         yield db
     finally:
         db.close()
+
+
