@@ -58,6 +58,11 @@ list1.insert(1,121)
 
 # Remove first occurrence of value.
 # Raises ValueError if the value is not present
+'''
+if value/index not found raise exception
+ValueError: list.remove(x): x not in list
+IndexError: pop index out of range
+'''
 list1.remove(121) # iterate over list and find 121 and remove it
 list1.pop() # remove element from specific index, by default it remove element from end of the list
 list1.pop(1)
@@ -119,6 +124,8 @@ list1.sort()
 list1.sort(reverse=True)#descending order = decreasing order
 print(list1)
 
+# list1.pop("23")
+# print(list1)
 
 
 
