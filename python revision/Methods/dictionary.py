@@ -17,7 +17,8 @@ dict1 = {
     "age": 20,
     "mobile":12321312
 }
-
+dict1['name'] = "JohnChange"
+print(dict1)
 dict2 = dict(name="J")
 
 # empty dictionary
